@@ -1,9 +1,12 @@
 let cards = document.querySelectorAll('.memory-card')
 let counterDisplay = document.querySelector('.noOfClicks')
+let gameOver = document.querySelector('.endGame')
+let reloadPage = document.querySelector('button')
 let noOfClicks = 0;
 let firstCard, secondCard
 let hasClicked = false
 let lockBoard = false;
+let gamePoints = 0;
 
 (function shufflecards () {
     cards.forEach(card => {
@@ -18,7 +21,6 @@ function flipCard() {
     if (this === firstCard) return
     noOfClicks++;
     counterDisplay.textContent = noOfClicks
-    console.log(noOfClicks);
     this.classList.add('flip')
     if (!hasClicked) {
         hasClicked = true
@@ -28,15 +30,16 @@ function flipCard() {
 
     secondCard = this
     CheckMatch()
-    
 }
 
 function CheckMatch() {
-    firstCard.getAttribute('data') === secondCard.getAttribute('data')? disableCards(): unFlipCards()
-    
+    firstCard.getAttribute('data') === secondCard.getAttribute('data') ? disableCards() : unFlipCards()
 }
 
 function disableCards() {
+    gamePoints++
+    if (gamePoints === 6) gameOver.classList.add('show')
+    
     firstCard.removeEventListener('click', flipCard)
     secondCard.removeEventListener('click', flipCard)
     resetBoard()
@@ -49,7 +52,6 @@ function unFlipCards() {
         secondCard.classList.remove('flip')
         resetBoard()
     }, 1000)
-    
 }
 
 function resetBoard() {
@@ -59,3 +61,14 @@ function resetBoard() {
     [hasClicked, lockBoard, firstCard, secondCard] = [false, false, null, null]
 }
 
+reload = () => {
+    window.location.reload();
+}
+
+removeHide = () => {
+    gameOver.classList.remove('show')
+}
+
+gameOver.addEventListener('click', removeHide)
+
+reloadPage.addEventListener('click', reload);
