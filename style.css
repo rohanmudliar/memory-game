@@ -10,6 +10,28 @@ body {
   background: #060AB2;
 }
 
+header {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  color: rgb(255, 38, 0);
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
+}
+
+.clickSection {
+  position: absolute;
+  top: 9%;
+  right: 5%;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+}
+
 .memory-game {
   width: 640px;
   height: 640px;

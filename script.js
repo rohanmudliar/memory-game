@@ -1,4 +1,6 @@
 let cards = document.querySelectorAll('.memory-card')
+let counterDisplay = document.querySelector('.noOfClicks')
+let noOfClicks = 0;
 let firstCard, secondCard
 let hasClicked = false
 let lockBoard = false;
@@ -13,7 +15,10 @@ cards.forEach((card) => card.addEventListener('click', flipCard))
 
 function flipCard() {
     if (lockBoard) return
-    if(this === firstCard) return
+    if (this === firstCard) return
+    noOfClicks++;
+    counterDisplay.textContent = noOfClicks
+    console.log(noOfClicks);
     this.classList.add('flip')
     if (!hasClicked) {
         hasClicked = true
